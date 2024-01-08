@@ -43,6 +43,46 @@ class ChipLikeRocketConfig extends Config(
 
   new chipyard.config.AbstractConfig)
 
+// A simple config demonstrating how to set up a basic chip in Chipyard
+class ChipLikeMegaBoomConfig extends Config(
+  //==================================
+  // Set up TestHarness
+  //==================================
+  new chipyard.harness.WithAbsoluteFreqHarnessClockInstantiator ++ // use absolute frequencies for simulations in the harness
+                                                                   // NOTE: This only simulates properly in VCS
+
+  //==================================
+  // Set up tiles
+  //==================================
+  new freechips.rocketchip.subsystem.WithAsynchronousRocketTiles(depth=8, sync=3) ++ // Add async crossings between RocketTile and uncore
+  new boom.common.WithNMegaBooms(1) ++                             // 1 MegaBoom
+
+  //==================================
+  // Set up I/O
+  //==================================
+  new testchipip.serdes.WithSerialTLWidth(4) ++                                         // 4bit wide Serialized TL interface to minimize IO
+  new testchipip.serdes.WithSerialTLMem(size = (1 << 30) * 4L) ++                       // Configure the off-chip memory accessible over serial-tl as backing memory
+  new freechips.rocketchip.subsystem.WithNoMemPort ++                                   // Remove axi4 mem port
+  new freechips.rocketchip.subsystem.WithNMemoryChannels(1) ++                          // 1 memory channel
+
+  //==================================
+  // Set up buses
+  //==================================
+  new testchipip.soc.WithOffchipBusClient(MBUS) ++                                      // offchip bus connects to MBUS, since the serial-tl needs to provide backing memory
+  new testchipip.soc.WithOffchipBus ++                                                  // attach a offchip bus, since the serial-tl will master some external tilelink memory
+
+  //==================================
+  // Set up clock./reset
+  //==================================
+  new chipyard.clocking.WithPLLSelectorDividerClockGenerator ++   // Use a PLL-based clock selector/divider generator structure
+
+  // Create the uncore clock group
+  new chipyard.clocking.WithClockGroupsCombinedByName(("uncore", Seq("implicit", "sbus", "mbus", "cbus", "system_bus", "fbus", "pbus"), Nil)) ++
+
+  new chipyard.config.AbstractConfig)
+
+
+
 class FlatChipTopChipLikeRocketConfig extends Config(
   new chipyard.example.WithFlatChipTop ++
   new chipyard.ChipLikeRocketConfig)

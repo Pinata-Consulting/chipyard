@@ -208,13 +208,8 @@ MFC_BASE_LOWERING_OPTIONS ?= emittedLineLength=2048,noAlwaysComb,disallowLocalVa
 # hence we remove them manually by using jq before passing them to firtool
 
 $(SFC_LEVEL) $(EXTRA_FIRRTL_OPTIONS) &: $(FIRRTL_FILE)
-ifeq (,$(ENABLE_CUSTOM_FIRRTL_PASS))
-	echo $(if $(shell grep "Fixed<" $(FIRRTL_FILE)), low, none) > $(SFC_LEVEL)
+	echo none > $(SFC_LEVEL)
 	echo "$(EXTRA_BASE_FIRRTL_OPTIONS)" $(if $(shell grep "Fixed<" $(FIRRTL_FILE)), "$(SFC_REPL_SEQ_MEM)",) > $(EXTRA_FIRRTL_OPTIONS)
-else
-	echo low > $(SFC_LEVEL)
-	echo "$(EXTRA_BASE_FIRRTL_OPTIONS)" "$(SFC_REPL_SEQ_MEM)" > $(EXTRA_FIRRTL_OPTIONS)
-endif
 
 $(MFC_LOWERING_OPTIONS):
 	mkdir -p $(dir $@)
