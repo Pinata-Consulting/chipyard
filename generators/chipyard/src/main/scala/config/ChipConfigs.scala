@@ -45,6 +45,7 @@ class ChipLikeRocketConfig extends Config(
 
 // A simple config demonstrating how to set up a basic chip in Chipyard
 class ChipLikeMegaBoomConfig extends Config(
+  
   //==================================
   // Set up TestHarness
   //==================================
@@ -74,7 +75,7 @@ class ChipLikeMegaBoomConfig extends Config(
   //==================================
   // Set up clock./reset
   //==================================
-  new chipyard.clocking.WithPLLSelectorDividerClockGenerator ++   // Use a PLL-based clock selector/divider generator structure
+  //new chipyard.clocking.WithPLLSelectorDividerClockGenerator ++   // Use a PLL-based clock selector/divider generator structure
 
   // Create the uncore clock group
   new chipyard.clocking.WithClockGroupsCombinedByName(("uncore", Seq("implicit", "sbus", "mbus", "cbus", "system_bus", "fbus", "pbus"), Nil)) ++
