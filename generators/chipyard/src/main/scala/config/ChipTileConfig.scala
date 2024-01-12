@@ -55,7 +55,7 @@ class ChipLikeBoomTileConfig extends Config(
   new chipyard.harness.WithSimSPIFlashModel ++                     // add simulated SPI flash memory, if SPI is enabled
   new chipyard.harness.WithSimAXIMMIO ++                           // add SimAXIMem for axi4 mmio port, if enabled
   new chipyard.harness.WithTieOffInterrupts ++                     // tie-off interrupt ports, if present
-  new chipyard.harness.WithCustomBootPinPlusArg ++                 // drive custom-boot pin with a plusarg, if custom-boot-pin is present
+  //new chipyard.harness.WithCustomBootPinPlusArg ++                 // drive custom-boot pin with a plusarg, if custom-boot-pin is present
   //new chipyard.harness.WithSimUARTToUARTTSI ++                     // connect a SimUART to the UART-TSI port
   new chipyard.harness.WithClockFromHarness ++                     // all Clock I/O in ChipTop should be driven by harnessClockInstantiator
   new chipyard.harness.WithResetFromHarness ++                     // reset controlled by harness
@@ -69,7 +69,7 @@ class ChipLikeBoomTileConfig extends Config(
   new chipyard.iobinders.WithGPIOCells ++
   new chipyard.iobinders.WithSPIFlashIOCells ++
   new chipyard.iobinders.WithExtInterruptIOCells ++
-  new chipyard.iobinders.WithCustomBootPin ++
+  //new chipyard.iobinders.WithCustomBootPin ++
   // The "punchthrough" IOBInders below don't generate IOCells, as these interfaces shouldn't really be mapped to ASIC IO
   // Instead, they directly pass through the DigitalTop ports to ports in the ChipTop
   new chipyard.iobinders.WithI2CPunchthrough ++
@@ -93,7 +93,7 @@ class ChipLikeBoomTileConfig extends Config(
   new chipyard.config.WithFrontBusFrequency(500.0) ++               // Default 500 MHz fbus
   new chipyard.config.WithOffchipBusFrequency(500.0) ++             // Default 500 MHz obus
 
-  new testchipip.boot.WithCustomBootPin ++                          // add a custom-boot-pin to support pin-driven boot address
+  //new testchipip.boot.WithCustomBootPin ++                          // add a custom-boot-pin to support pin-driven boot address
   new testchipip.boot.WithBootAddrReg ++                            // add a boot-addr-reg for configurable boot address
   new testchipip.serdes.WithSerialTL(Seq(                           // add a serial-tilelink interface
     testchipip.serdes.SerialTLParams(
