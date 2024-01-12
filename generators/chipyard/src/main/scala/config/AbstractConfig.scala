@@ -73,8 +73,6 @@ class AbstractConfig extends Config(
                                         size = 64 * 1024) ++
   new chipyard.config.WithDebugModuleAbstractDataWords(8) ++        // increase debug module data capacity
   new chipyard.config.WithBootROM ++                                // use default bootrom
-  new chipyard.config.WithUART ++                                   // add a UART
-  new chipyard.config.WithL2TLBs(1024) ++                           // use L2 TLBs
   new chipyard.config.WithNoSubsystemDrivenClocks ++                // drive the subsystem diplomatic clocks from ChipTop instead of using implicit clocks
   new chipyard.config.WithInheritBusFrequencyAssignments ++         // Unspecified clocks within a bus will receive the bus frequency if set
   new freechips.rocketchip.subsystem.WithNMemoryChannels(1) ++      // Default 1 memory channels
