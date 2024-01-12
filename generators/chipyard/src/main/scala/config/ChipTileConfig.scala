@@ -43,7 +43,7 @@ class ChipLikeBoomTileConfig extends Config(
   new chipyard.clocking.WithClockGroupsCombinedByName(("uncore", Seq("implicit", "sbus", "mbus", "cbus", "system_bus", "fbus", "pbus"), Nil)) ++
 
     // The HarnessBinders control generation of hardware in the TestHarness
-  new chipyard.harness.WithUARTAdapter ++                          // add UART adapter to display UART on stdout, if uart is present
+  //new chipyard.harness.WithUARTAdapter ++                          // add UART adapter to display UART on stdout, if uart is present
   new chipyard.harness.WithBlackBoxSimMem ++                       // add SimDRAM DRAM model for axi4 backing memory, if axi4 mem is enabled
   new chipyard.harness.WithSimTSIOverSerialTL ++                   // add external serial-adapter and RAM
   new chipyard.harness.WithSimJTAGDebug ++                         // add SimJTAG if JTAG for debug exposed
@@ -54,7 +54,7 @@ class ChipLikeBoomTileConfig extends Config(
   new chipyard.harness.WithSimAXIMMIO ++                           // add SimAXIMem for axi4 mmio port, if enabled
   new chipyard.harness.WithTieOffInterrupts ++                     // tie-off interrupt ports, if present
   new chipyard.harness.WithCustomBootPinPlusArg ++                 // drive custom-boot pin with a plusarg, if custom-boot-pin is present
-  new chipyard.harness.WithSimUARTToUARTTSI ++                     // connect a SimUART to the UART-TSI port
+  //new chipyard.harness.WithSimUARTToUARTTSI ++                     // connect a SimUART to the UART-TSI port
   new chipyard.harness.WithClockFromHarness ++                     // all Clock I/O in ChipTop should be driven by harnessClockInstantiator
   new chipyard.harness.WithResetFromHarness ++                     // reset controlled by harness
   new chipyard.harness.WithAbsoluteFreqHarnessClockInstantiator ++ // generate clocks in harness with unsynthesizable ClockSourceAtFreqMHz
@@ -63,7 +63,7 @@ class ChipLikeBoomTileConfig extends Config(
   // IOCells are generated for "Chip-like" IOs
   new chipyard.iobinders.WithSerialTLIOCells ++
   new chipyard.iobinders.WithDebugIOCells ++
-  new chipyard.iobinders.WithUARTIOCells ++
+  //new chipyard.iobinders.WithUARTIOCells ++
   new chipyard.iobinders.WithGPIOCells ++
   new chipyard.iobinders.WithSPIFlashIOCells ++
   new chipyard.iobinders.WithExtInterruptIOCells ++
@@ -78,7 +78,7 @@ class ChipLikeBoomTileConfig extends Config(
   new chipyard.iobinders.WithBlockDeviceIOPunchthrough ++
   new chipyard.iobinders.WithNICIOPunchthrough ++
   new chipyard.iobinders.WithTraceIOPunchthrough ++
-  new chipyard.iobinders.WithUARTTSIPunchthrough ++
+  //new chipyard.iobinders.WithUARTTSIPunchthrough ++
   new chipyard.iobinders.WithNMITiedOff ++
 
   // By default, punch out IOs to the Harness
@@ -101,7 +101,7 @@ class ChipLikeBoomTileConfig extends Config(
   )) ++
   new chipyard.config.WithDebugModuleAbstractDataWords(8) ++        // increase debug module data capacity
   new chipyard.config.WithBootROM ++                                // use default bootrom
-  new chipyard.config.WithUART ++                                   // add a UART
+  //new chipyard.config.WithUART ++                                   // add a UART
   new chipyard.config.WithNoSubsystemDrivenClocks ++                // drive the subsystem diplomatic clocks from ChipTop instead of using implicit clocks
   new chipyard.config.WithInheritBusFrequencyAssignments ++         // Unspecified clocks within a bus will receive the bus frequency if set
   new freechips.rocketchip.subsystem.WithNMemoryChannels(1) ++      // Default 1 memory channels
