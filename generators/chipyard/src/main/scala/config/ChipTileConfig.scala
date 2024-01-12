@@ -4,6 +4,8 @@ import org.chipsalliance.cde.config.{Config}
 import freechips.rocketchip.diplomacy._
 import freechips.rocketchip.subsystem.{MBUS, SBUS}
 import testchipip.soc.{OBUS}
+import org.chipsalliance.cde.config.Config
+import freechips.rocketchip.subsystem._
 
 // A simple config demonstrating how to set up a basic chip in Chipyard
 class ChipLikeBoomTileConfig extends Config(
@@ -112,4 +114,11 @@ class ChipLikeBoomTileConfig extends Config(
   new freechips.rocketchip.subsystem.WithDontDriveBusClocksFromSBus ++ // leave the bus clocks undriven by sbus
   new freechips.rocketchip.subsystem.WithCoherentBusTopology ++     // hierarchical buses including sbus/mbus/pbus/fbus/cbus/l2
   new freechips.rocketchip.subsystem.WithDTS("ucb-bar,chipyard", Nil) ++ // custom device name for DTS
-  new freechips.rocketchip.system.BaseConfig)
+    new WithDefaultMemPort ++
+  new WithDefaultMMIOPort ++
+  new WithDefaultSlavePort ++
+  new WithTimebase(BigInt(1000000)) ++ // 1 MHz
+  new WithDTS("freechips,rocketchip-unknown", Nil) ++
+  new WithNExtTopInterrupts(2) ++
+  new BaseSubsystemConfig
+)
