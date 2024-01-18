@@ -9,9 +9,9 @@ firtool \
 	--disable-annotation-unknown \
 	--mlir-timing \
 	--lowering-options=emittedLineLength=2048,noAlwaysComb,disallowLocalVariables,verifLabels,locationInfoStyle=wrapInAtSquareBracket,disallowPackedArrays,omitVersionComment \
-	--annotation-file=generated-src/chipyard.harness.TestHarness.ChipLikeBoomTileConfig/chipyard.harness.TestHarness.ChipLikeBoomTileConfig.sfc.anno.json \
+	--annotation-file=generated-src/chipyard.harness.TestHarness.MegaBoomMacroConfig/chipyard.harness.TestHarness.MegaBoomMacroConfig.sfc.anno.json \
 	--split-verilog \
     --disable-all-randomization \
 	--strip-debug-info \
 	-o megaboom/ \
-	generated-src/chipyard.harness.TestHarness.ChipLikeBoomTileConfig/chipyard.harness.TestHarness.ChipLikeBoomTileConfig.sfc.fir
+	generated-src/chipyard.harness.TestHarness.MegaBoomMacroConfig/chipyard.harness.TestHarness.MegaBoomMacroConfig.sfc.fir
